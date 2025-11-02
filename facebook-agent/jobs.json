@@ -1,0 +1,82 @@
+[
+  {
+    "title": "Senior Software Engineer",
+    "location": "San Francisco, CA",
+    "city": "San Francisco",
+    "requirements": [
+      "5+ years of Python experience",
+      "Experience with React and Node.js",
+      "Strong understanding of microservices architecture",
+      "Excellent communication skills"
+    ],
+    "description": "We're looking for a Senior Software Engineer to join our growing team. You'll work on building scalable web applications and mentor junior developers.",
+    "url": "https://yourcompany.com/jobs/senior-software-engineer",
+    "salary": "$150,000 - $200,000",
+    "job_type": "Full-time",
+    "experience_level": "Senior"
+  },
+  {
+    "title": "Frontend Developer",
+    "location": "New York, NY",
+    "city": "New York",
+    "requirements": [
+      "3+ years of React experience",
+      "Strong CSS and responsive design skills",
+      "Experience with TypeScript",
+      "Understanding of UI/UX principles"
+    ],
+    "description": "Join our frontend team to build beautiful, user-friendly interfaces. You'll work closely with designers and backend engineers.",
+    "url": "https://yourcompany.com/jobs/frontend-developer",
+    "salary": "$120,000 - $160,000",
+    "job_type": "Full-time",
+    "experience_level": "Mid"
+  },
+  {
+    "title": "Data Analyst",
+    "location": "Austin, TX",
+    "city": "Austin",
+    "requirements": [
+      "2+ years of data analysis experience",
+      "Proficiency in SQL and Python",
+      "Experience with Tableau or Power BI",
+      "Strong analytical and problem-solving skills"
+    ],
+    "description": "Analyze data to drive business decisions. You'll work with cross-functional teams to identify insights and opportunities.",
+    "url": "https://yourcompany.com/jobs/data-analyst",
+    "salary": "$80,000 - $110,000",
+    "job_type": "Full-time",
+    "experience_level": "Mid"
+  },
+  {
+    "title": "DevOps Engineer",
+    "location": "Seattle, WA",
+    "city": "Seattle",
+    "requirements": [
+      "3+ years of DevOps experience",
+      "Experience with AWS, Docker, and Kubernetes",
+      "Strong scripting skills (Python, Bash)",
+      "CI/CD pipeline experience"
+    ],
+    "description": "Build and maintain our cloud infrastructure. You'll automate deployments and ensure system reliability.",
+    "url": "https://yourcompany.com/jobs/devops-engineer",
+    "salary": "$130,000 - $170,000",
+    "job_type": "Full-time",
+    "experience_level": "Mid"
+  },
+  {
+    "title": "Marketing Manager",
+    "location": "Los Angeles, CA",
+    "city": "Los Angeles",
+    "requirements": [
+      "5+ years of marketing experience",
+      "Experience with digital marketing and SEO",
+      "Strong leadership skills",
+      "Data-driven decision maker"
+    ],
+    "description": "Lead our marketing efforts to grow our brand. You'll manage campaigns, analyze metrics, and lead a small team.",
+    "url": "https://yourcompany.com/jobs/marketing-manager",
+    "salary": "$100,000 - $140,000",
+    "job_type": "Full-time",
+    "experience_level": "Senior"
+  }
+]

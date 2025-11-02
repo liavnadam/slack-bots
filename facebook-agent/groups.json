@@ -1,0 +1,32 @@
+[
+  {
+    "group_id": "123456789",
+    "name": "San Francisco Bay Area Job Seekers",
+    "city": "San Francisco",
+    "description": "Job search group for SF Bay Area"
+  },
+  {
+    "group_id": "234567890",
+    "name": "NYC Tech Jobs",
+    "city": "New York",
+    "description": "Technology jobs in New York City"
+  },
+  {
+    "group_id": "345678901",
+    "name": "Austin Job Opportunities",
+    "city": "Austin",
+    "description": "Job opportunities in Austin, TX"
+  },
+  {
+    "group_id": "456789012",
+    "name": "Seattle Career Network",
+    "city": "Seattle",
+    "description": "Career networking and job search in Seattle"
+  },
+  {
+    "group_id": "567890123",
+    "name": "Los Angeles Jobs & Careers",
+    "city": "Los Angeles",
+    "description": "Job opportunities in Los Angeles area"
+  }
+]

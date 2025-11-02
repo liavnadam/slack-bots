@@ -1,24 +1,42 @@
-# Facebook Job Search Agent
+# Facebook Job Search Agent V2
 
-An intelligent agent that finds Facebook posts about job searching and automatically generates helpful, supportive comments using LangChain and GPT.
+An intelligent agent that automatically finds job-seeking posts on Facebook and comments with helpful advice + relevant job opportunities from your company. Built with LangChain, GPT-3.5, and Facebook Graph API.
 
-## Features
+## 🚀 Key Features
+
+### V2 Enhancements (NEW!)
+
+✨ **Job Opportunity Matching** - Automatically matches job seekers with relevant positions from your company
+🎯 **City-Based Targeting** - Target specific Facebook groups in cities where you have job openings
+🛡️ **Smart Rate Limiting** - Advanced rate limiting with random delays to avoid Facebook blocks
+📊 **Multi-Source Job Loading** - Support for JSON, CSV, API, and web scraping
+🤖 **Intelligent Comments** - GPT-powered comments that feel natural and include relevant job links
+⚙️ **Production Ready** - Configurable limits, delays, and automatic posting
+
+### Core Features
 
 - 🔍 **Smart Post Detection**: Identifies job-related posts using keyword matching
-- 🤖 **AI-Powered Comments**: Generates personalized, helpful comments using GPT-3.5
-- 🛡️ **Safe by Default**: Runs in dry-run mode to preview comments before posting
-- ⚙️ **Configurable**: Control comment limits, targeting, and behavior
-- 📊 **Multiple Sources**: Search your feed or specific Facebook groups
+- 🤖 **AI-Powered Comments**: Personalized, empathetic advice using GPT-3.5
+- 🛡️ **Safe by Default**: Dry-run mode to preview before posting
+- 📈 **Detailed Reporting**: Real-time progress and summary statistics
 
-## How It Works
+## 📋 What It Does
 
-1. **Search**: Finds posts in your feed or specified Facebook groups
-2. **Filter**: Identifies posts related to job searching using keywords
-3. **Analyze**: Uses LangChain + GPT to understand the post context
-4. **Generate**: Creates empathetic, actionable advice tailored to the post
-5. **Comment**: Posts the comment (or shows preview in dry-run mode)
+1. **Searches** Facebook groups in cities where you have job openings
+2. **Identifies** posts from people looking for work
+3. **Matches** them with relevant jobs from your company
+4. **Generates** personalized, helpful comments with job recommendations
+5. **Posts** comments automatically with smart rate limiting
 
-## Setup
+## 🎯 Example Comments
+
+**Without Job Match:**
+> "Hang in there! The job search can be tough, but staying consistent pays off. One tip: reach out directly to hiring managers on LinkedIn - it often gets better response rates than just applying online."
+
+**With Job Match:**
+> "I can relate to how challenging the job search can be - keep pushing forward! Since you mentioned experience with React, I came across a Frontend Developer position in New York that might interest you. It requires React, TypeScript, and responsive design skills. Thought it could be a good fit! https://yourcompany.com/jobs/frontend-developer"
+
+## 🛠️ Setup
 
 ### 1. Install Dependencies
 
@@ -30,219 +48,274 @@ pip install -r requirements.txt
 ### 2. Get Facebook Access Token
 
 You need a Facebook User Access Token with these permissions:
-- `user_posts` - Read posts from your feed
+- `user_posts` - Read posts from feeds
+- `groups_access_member_info` - Access group posts
 - `publish_actions` or `pages_manage_posts` - Post comments
-- `groups_access_member_info` - Access group posts (if targeting groups)
 
-**How to get an access token:**
+**How to get a token:**
 
 1. Go to [Facebook Developers](https://developers.facebook.com/)
-2. Create a new app or use an existing one
+2. Create a new app or use existing
 3. Go to **Tools** → **Graph API Explorer**
-4. Select your app from the dropdown
-5. Click **Generate Access Token**
-6. Grant the required permissions
+4. Select your app
+5. Add required permissions
+6. Click **Generate Access Token**
 7. Copy the token
 
-**Important Notes:**
-- User tokens expire after 1-2 hours by default
-- For long-lived tokens (60 days), exchange your short-lived token using the [Access Token Debugger](https://developers.facebook.com/tools/debug/accesstoken/)
-- For production use, consider implementing proper OAuth flow
+**For long-lived tokens (60 days):**
+Use the [Access Token Debugger](https://developers.facebook.com/tools/debug/accesstoken/) to exchange short-lived tokens.
 
 ### 3. Get OpenAI API Key
 
 1. Go to [OpenAI Platform](https://platform.openai.com/)
 2. Sign up or log in
-3. Go to **API Keys** section
-4. Click **Create new secret key**
-5. Copy the key
+3. Create a new API key
+4. Copy the key
 
-### 4. Configure Environment Variables
+### 4. Configure Environment
 
 ```bash
 cp .env.example .env
 ```
 
-Edit `.env` and add your credentials:
+Edit `.env`:
 
 ```
-FACEBOOK_ACCESS_TOKEN=your_facebook_access_token_here
-OPENAI_API_KEY=your_openai_api_key_here
+FACEBOOK_ACCESS_TOKEN=your_facebook_access_token
+OPENAI_API_KEY=your_openai_api_key
 ```
 
-## Usage
+### 5. Configure Your Jobs
 
-### Basic Usage (Dry Run)
+Edit `jobs.json` with your actual job openings:
+
+```json
+[
+  {
+    "title": "Senior Software Engineer",
+    "location": "San Francisco, CA",
+    "city": "San Francisco",
+    "requirements": [
+      "5+ years Python experience",
+      "React and Node.js",
+      "Microservices architecture"
+    ],
+    "description": "Join our team building scalable web apps...",
+    "url": "https://yourcompany.com/jobs/senior-engineer",
+    "salary": "$150,000 - $200,000",
+    "job_type": "Full-time",
+    "experience_level": "Senior"
+  }
+]
+```
+
+**Alternative formats supported:**
+- CSV files (use `CSVFileJobSource`)
+- API endpoint (use `APIJobSource`)
+- Web scraping (use `WebScraperJobSource`)
+
+### 6. Configure Facebook Groups
+
+Edit `groups.json` with groups you're a member of:
+
+```json
+[
+  {
+    "group_id": "123456789",
+    "name": "San Francisco Bay Area Job Seekers",
+    "city": "San Francisco",
+    "description": "Job search group for SF Bay Area"
+  }
+]
+```
+
+**How to find group IDs:**
+1. Go to the Facebook group
+2. Look at URL: `facebook.com/groups/{GROUP_ID}/`
+3. Copy the GROUP_ID
+
+## 🚀 Usage
+
+### Quick Start (Dry Run)
+
+Test the agent without posting anything:
 
 ```bash
-python facebook_job_agent.py
+python facebook_job_agent_v2.py
 ```
 
-This runs in **dry-run mode** by default, which means it will:
+This will:
+- Search configured groups
 - Find job-related posts
+- Match jobs to posts
 - Generate comments
-- Show you what it would post
-- **NOT actually post** anything
+- Show you what it WOULD post (but not actually post)
 
-### Live Mode (Actually Post Comments)
+### Live Mode (Automatic Posting)
 
-Edit `facebook_job_agent.py` and change:
+Edit `facebook_job_agent_v2.py`:
 
 ```python
-agent = FacebookJobAgent(
-    max_comments_per_run=5,
-    dry_run=False  # Set to False to actually post
+agent = EnhancedFacebookJobAgent(
+    jobs_file="jobs.json",
+    groups_file="groups.json",
+    dry_run=False,  # ⚠️ Set to False for live posting
+    include_job_opportunities=True,
+    min_delay=3.0,
+    max_delay=8.0,
+    posts_per_group=3,
+    max_posts_per_run=10
 )
 ```
 
 Then run:
 
 ```bash
-python facebook_job_agent.py
+python facebook_job_agent_v2.py
 ```
 
-### Target Specific Groups
+### Target Specific Cities
 
-If you want to comment on posts in specific Facebook groups:
+Only comment in groups from specific cities:
 
 ```python
-from facebook_job_agent import FacebookJobAgent
-
-agent = FacebookJobAgent(
-    max_comments_per_run=5,
-    dry_run=True
-)
-
-# Add your group IDs
-group_ids = [
-    "123456789",  # Replace with actual group IDs
-    "987654321"
-]
-
-agent.run(group_ids=group_ids)
+# Only run in SF and NY groups
+agent.run_on_groups(city_filter=["San Francisco", "New York"])
 ```
 
-**How to find group IDs:**
-1. Go to the Facebook group
-2. Look at the URL: `facebook.com/groups/{GROUP_ID}/`
-3. Copy the GROUP_ID
-
-### Custom Configuration
+### Advanced Configuration
 
 ```python
-agent = FacebookJobAgent(
-    access_token="your_token",  # Or use env var
-    openai_api_key="your_key",  # Or use env var
-    max_comments_per_run=10,    # Limit comments per run
-    dry_run=True                # Preview mode
+agent = EnhancedFacebookJobAgent(
+    # API Keys (or use .env)
+    access_token="your_token",
+    openai_api_key="your_key",
+
+    # Job Sources
+    jobs_file="jobs.json",
+    groups_file="groups.json",
+
+    # Behavior
+    dry_run=True,  # False to actually post
+    include_job_opportunities=True,  # Include job links
+
+    # Rate Limiting (IMPORTANT for avoiding blocks)
+    min_delay=3.0,  # Min seconds between comments
+    max_delay=8.0,  # Max seconds between comments
+    posts_per_group=3,  # Max comments per group per run
+    max_posts_per_run=10  # Total max per run
 )
 ```
 
-## Configuration Options
+## 🔧 Configuration Options
+
+### Rate Limiting (Prevent Blocks)
 
 | Parameter | Default | Description |
 |-----------|---------|-------------|
-| `access_token` | From `.env` | Facebook Graph API access token |
-| `openai_api_key` | From `.env` | OpenAI API key |
-| `max_comments_per_run` | 5 | Maximum comments to post per run |
-| `dry_run` | True | If True, only shows previews without posting |
+| `min_delay` | 3.0 | Minimum seconds between comments |
+| `max_delay` | 8.0 | Maximum seconds between comments |
+| `posts_per_group` | 3 | Max comments per group per run |
+| `max_posts_per_run` | 10 | Total max comments per run |
 
-## Job Search Keywords
+**Recommended settings:**
+- **Conservative**: `min_delay=5`, `max_delay=15`, `posts_per_group=2`, `max_posts_per_run=5`
+- **Moderate**: `min_delay=3`, `max_delay=10`, `posts_per_group=3`, `max_posts_per_run=10`
+- **Aggressive** (not recommended): `min_delay=2`, `max_delay=5`, `posts_per_group=5`, `max_posts_per_run=15`
 
-The agent identifies posts containing these keywords:
-- job search
-- looking for work
-- hiring
-- job hunting
-- need a job
-- seeking employment
-- open to work
-- unemployed
-- career change
-- job opportunity
-- resume tips
-- interview
-- job application
+### Job Sources
 
-You can customize these in the `job_keywords` list in `facebook_job_agent.py`.
-
-## Comment Style
-
-The agent generates comments that are:
-- **Empathetic**: Shows understanding and support
-- **Actionable**: Provides specific tips or advice
-- **Natural**: Feels human, not robotic
-- **Brief**: 2-3 sentences
-- **Context-aware**: Tailored to the specific post
-
-Example generated comments:
-- "Hang in there! The job search can be tough, but staying consistent with applications and networking often pays off. Have you tried reaching out directly to hiring managers on LinkedIn?"
-- "Great that you're being proactive! One tip that helped me: tailor your resume for each position by matching keywords from the job description. It really improves your chances of getting past ATS systems."
-
-## Safety & Best Practices
-
-⚠️ **Important Considerations:**
-
-1. **Start with Dry Run**: Always test in dry-run mode first
-2. **Limit Comments**: Don't spam - keep `max_comments_per_run` low (5-10)
-3. **Wait Between Runs**: Don't run the agent too frequently
-4. **Respect Privacy**: Only comment on public posts or groups you're a member of
-5. **Facebook Policies**: Review [Facebook's Platform Policies](https://developers.facebook.com/policy) to ensure compliance
-6. **Rate Limits**: Facebook has API rate limits - space out your requests
-7. **Monitor Comments**: Check the comments being posted and adjust prompts if needed
-
-## Facebook API Limitations
-
-As of 2024, Facebook has restricted many public search capabilities:
-- Public post search is no longer available for privacy reasons
-- You can only access posts from:
-  - Your own feed
-  - Groups you're a member of
-  - Pages you manage
-
-This agent focuses on commenting in groups you belong to or on posts in your feed.
-
-## Troubleshooting
-
-### "Facebook access token is required"
-- Make sure your `.env` file exists and contains `FACEBOOK_ACCESS_TOKEN`
-- Check that the token hasn't expired
-
-### "Error fetching posts: 403"
-- Your token may not have the required permissions
-- Regenerate with `user_posts` and `groups_access_member_info` permissions
-
-### "Error posting comment: 403"
-- You need `publish_actions` or `pages_manage_posts` permission
-- You may not have permission to comment on that post
-
-### No job-related posts found
-- Try adjusting the `job_keywords` list
-- Check if posts in your feed/groups contain these keywords
-
-## Customization
-
-### Modify Comment Prompt
-
-Edit the `comment_prompt` in `facebook_job_agent.py`:
-
+**JSON File (default):**
 ```python
-self.comment_prompt = ChatPromptTemplate.from_template(
-    """Your custom prompt here...
+from job_opportunities import JSONFileJobSource
+job_source = JSONFileJobSource("jobs.json")
+```
 
-    Post: {post_content}
+**CSV File:**
+```python
+from job_opportunities import CSVFileJobSource
+job_source = CSVFileJobSource("jobs.csv")
+```
 
-    Generate a comment that..."""
+**API Endpoint:**
+```python
+from job_opportunities import APIJobSource
+job_source = APIJobSource(
+    api_url="https://yourcompany.com/api/jobs",
+    api_key="your_api_key"
 )
 ```
 
-### Change GPT Model
+**Web Scraping:**
+```python
+from job_opportunities import WebScraperJobSource
+job_source = WebScraperJobSource(
+    url="https://yourcompany.com/careers",
+    selectors={
+        'container': '.job-listing',
+        'title': '.job-title',
+        'location': '.job-location',
+        'url': 'a'
+    }
+)
+```
+
+## 📊 Job Matching Algorithm
+
+The agent uses intelligent matching to find relevant jobs:
+
+1. **Keyword Extraction**: Identifies tech/role keywords in posts (e.g., "Python", "React", "marketing")
+2. **City Filtering**: Prioritizes jobs in the same city as the group
+3. **Scoring**: Ranks jobs based on keyword matches
+4. **Best Match**: Selects highest-scoring job or most relevant for the city
+
+## 🔒 Safety & Best Practices
+
+### Avoiding Facebook Blocks
+
+✅ **DO:**
+- Start with dry-run mode
+- Use conservative rate limits
+- Space out your runs (don't run hourly)
+- Monitor your comments
+- Be genuinely helpful
+
+❌ **DON'T:**
+- Post too frequently
+- Use aggressive rate limits
+- Spam the same groups
+- Post generic/salesy comments
+- Ignore Facebook policies
+
+### Recommended Schedule
+
+- **Daily**: Run once per day during business hours
+- **Multiple times/day**: Wait at least 4-6 hours between runs
+- **Weekly**: Run 3-4 times per week
+
+### Monitoring
+
+Check your comments regularly:
+- Are they helpful and well-received?
+- Any negative feedback?
+- Are jobs actually relevant?
+
+Adjust your configuration based on feedback.
+
+## 📝 Customization
+
+### Modify Comment Prompts
+
+Edit prompts in `facebook_job_agent_v2.py`:
 
 ```python
-self.llm = ChatOpenAI(
-    model_name="gpt-4",  # Use GPT-4 for better quality
-    temperature=0.7,
-    openai_api_key=self.openai_api_key
+self.comment_prompt_with_job = ChatPromptTemplate.from_template(
+    """Your custom prompt here...
+
+    Post: {post_content}
+    Job: {job_title} in {job_location}
+
+    Generate a comment that..."""
 )
 ```
 
@@ -251,15 +324,98 @@ self.llm = ChatOpenAI(
 ```python
 self.job_keywords = [
     "job search",
-    "your custom keywords",
+    "looking for work",
+    "your custom keywords here",
     # ... add more
 ]
 ```
 
-## License
+### Use GPT-4 for Better Quality
+
+```python
+self.llm = ChatOpenAI(
+    model_name="gpt-4",  # More expensive but higher quality
+    temperature=0.7,
+    openai_api_key=self.openai_api_key
+)
+```
+
+## 📁 File Structure
+
+```
+facebook-agent/
+├── facebook_job_agent.py       # Original simple version
+├── facebook_job_agent_v2.py    # Enhanced version (recommended)
+├── job_opportunities.py        # Job loading and matching
+├── jobs.json                   # Your job openings
+├── groups.json                 # Target Facebook groups
+├── requirements.txt            # Dependencies
+├── .env.example               # Environment template
+└── README.md                  # This file
+```
+
+## 🆚 Version Comparison
+
+| Feature | V1 (Basic) | V2 (Enhanced) |
+|---------|------------|---------------|
+| Basic comments | ✓ | ✓ |
+| Job matching | ✗ | ✓ |
+| City targeting | ✗ | ✓ |
+| Advanced rate limiting | ✗ | ✓ |
+| Multiple job sources | ✗ | ✓ |
+| Production ready | Partial | ✓ |
+
+**Recommendation:** Use V2 (`facebook_job_agent_v2.py`) for production use.
+
+## 🐛 Troubleshooting
+
+### "Facebook access token is required"
+- Check `.env` file exists and contains `FACEBOOK_ACCESS_TOKEN`
+- Verify token hasn't expired
+
+### "Error fetching posts: 403"
+- Token missing required permissions
+- Regenerate with correct permissions
+- Verify you're a member of the groups
+
+### "Error posting comment: 403"
+- Need `publish_actions` permission
+- May not have permission to comment in that group
+- Token might have expired
+
+### No job-related posts found
+- Adjust `job_keywords` list
+- Try different groups
+- Check if groups are active
+
+### Getting blocked by Facebook
+- Reduce rate limits (increase delays, reduce max posts)
+- Space out your runs more
+- Make comments more natural/varied
+- Follow the safety guidelines above
+
+## 📄 License
 
 Part of the LangChain Experiments repository.
 
-## Disclaimer
+## ⚖️ Disclaimer
 
-This tool is for educational and helpful purposes. Please use responsibly and in accordance with Facebook's terms of service and community standards. Always prioritize being genuinely helpful to job seekers.
+This tool is for educational and helpful purposes. Use responsibly and in accordance with:
+- Facebook's Terms of Service
+- Facebook's Community Standards
+- Facebook's Platform Policies
+- Applicable laws and regulations
+
+Always prioritize being genuinely helpful to job seekers. Don't spam or be overly promotional.
+
+## 🤝 Support
+
+For issues or questions:
+1. Check the Troubleshooting section
+2. Review Facebook's API documentation
+3. Verify your configuration files
+4. Test in dry-run mode first
+
+---
+
+**Happy job matching! Help people find great opportunities while growing your company's talent pipeline.** 🎯
