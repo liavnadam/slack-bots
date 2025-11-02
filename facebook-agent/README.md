@@ -40,9 +40,19 @@ An intelligent agent that automatically finds job-seeking posts on Facebook and 
 
 **Using Correct Tech for your jobs?** We've got you covered!
 
+### For Petah Tikva Jobs (10 positions) 🇮🇱
+See **[START_HERE_PETAH_TIKVA.md](START_HERE_PETAH_TIKVA.md)** - Complete Hebrew guide for setting up 10 jobs in Petah Tikva!
+
+Quick start:
+```bash
+python setup_petah_tikva_jobs.py interactive
+```
+
+### General Correct Tech Integration
 See **[QUICKSTART_CORRECT_TECH.md](QUICKSTART_CORRECT_TECH.md)** for a step-by-step guide specific to your platform.
 
 Quick tools available:
+- `setup_petah_tikva_jobs.py` - ⭐ Petah Tikva specific setup (10 jobs)
 - `job_entry_helper.py` - Interactive job entry tool
 - `correct_tech_scraper.py` - Job import utilities
 - Full Hebrew/UTF-8 support
