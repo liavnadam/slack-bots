@@ -36,6 +36,17 @@ An intelligent agent that automatically finds job-seeking posts on Facebook and 
 **With Job Match:**
 > "I can relate to how challenging the job search can be - keep pushing forward! Since you mentioned experience with React, I came across a Frontend Developer position in New York that might interest you. It requires React, TypeScript, and responsive design skills. Thought it could be a good fit! https://yourcompany.com/jobs/frontend-developer"
 
+## 🚀 Quick Start for Correct Tech Users
+
+**Using Correct Tech for your jobs?** We've got you covered!
+
+See **[QUICKSTART_CORRECT_TECH.md](QUICKSTART_CORRECT_TECH.md)** for a step-by-step guide specific to your platform.
+
+Quick tools available:
+- `job_entry_helper.py` - Interactive job entry tool
+- `correct_tech_scraper.py` - Job import utilities
+- Full Hebrew/UTF-8 support
+
 ## 🛠️ Setup
 
 ### 1. Install Dependencies
@@ -302,6 +313,37 @@ Check your comments regularly:
 
 Adjust your configuration based on feedback.
 
+## 🛠️ Job Entry Tools
+
+### Interactive Job Entry Helper
+
+The easiest way to add jobs:
+
+```bash
+python job_entry_helper.py
+```
+
+Features:
+- **Interactive mode**: Answer simple questions to add jobs
+- **Bulk import**: Paste formatted text for multiple jobs
+- **List/edit**: View and manage your jobs
+- **Export**: Export to CSV for backup
+
+### Correct Tech Job Import
+
+For Correct Tech users:
+
+```bash
+python correct_tech_scraper.py
+```
+
+Options:
+- **Manual template**: Get a template to fill out
+- **Direct entry**: Edit the script to add jobs
+- **Selenium scraper**: Advanced automation (requires setup)
+
+See [QUICKSTART_CORRECT_TECH.md](QUICKSTART_CORRECT_TECH.md) for detailed instructions.
+
 ## 📝 Customization
 
 ### Modify Comment Prompts
@@ -344,14 +386,17 @@ self.llm = ChatOpenAI(
 
 ```
 facebook-agent/
-├── facebook_job_agent.py       # Original simple version
-├── facebook_job_agent_v2.py    # Enhanced version (recommended)
-├── job_opportunities.py        # Job loading and matching
-├── jobs.json                   # Your job openings
-├── groups.json                 # Target Facebook groups
-├── requirements.txt            # Dependencies
-├── .env.example               # Environment template
-└── README.md                  # This file
+├── facebook_job_agent_v2.py        # ⭐ Enhanced version (recommended)
+├── job_opportunities.py            # Job loading and matching
+├── job_entry_helper.py             # 🆕 Interactive job entry tool
+├── correct_tech_scraper.py         # 🆕 Job import utilities
+├── jobs.json                       # Your job openings
+├── groups.json                     # Target Facebook groups
+├── facebook_job_agent.py           # Original simple version
+├── requirements.txt                # Dependencies
+├── .env.example                    # Environment template
+├── README.md                       # This file
+└── QUICKSTART_CORRECT_TECH.md      # 🆕 Quick start for Correct Tech
 ```
 
 ## 🆚 Version Comparison
