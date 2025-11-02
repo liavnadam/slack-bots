@@ -188,7 +188,7 @@ Comment:"""
 
         # Prompt with job opportunity
         self.comment_prompt_with_job = ChatPromptTemplate.from_template(
-            """You are a helpful career advisor providing supportive advice to job seekers.
+            """You are a helpful career advisor and recruiter providing supportive advice to job seekers.
 
 A person posted this on Facebook about their job search:
 
@@ -199,16 +199,17 @@ You have a relevant job opportunity to share:
 Job Title: {job_title}
 Location: {job_location}
 Key Requirements: {job_requirements}
-URL: {job_url}
 
-Generate a brief, friendly comment (3-4 sentences) that:
+Generate a brief, friendly comment (3-4 sentences) in the SAME LANGUAGE as the post that:
 - Shows empathy and encouragement
 - Provides ONE actionable tip related to their search
 - Naturally mentions you saw a relevant opportunity that might interest them
 - Briefly highlights why it could be a good fit (1 sentence max)
-- Includes the job URL
-- Feels personal, not like a job board spam
+- Asks them to send you a PRIVATE MESSAGE for more details (be specific: "שלחו לי הודעה פרטית" in Hebrew, or "send me a private message" in English)
+- Feels personal and helpful, not like spam
 - Doesn't sound overly promotional
+
+IMPORTANT: End with asking them to message you privately for details. Do NOT include any URL or application link.
 
 Comment:"""
         )
@@ -269,13 +270,12 @@ Comment:"""
         """Generate a comment with optional job opportunity."""
         try:
             if matched_job and self.include_job_opportunities:
-                # Generate comment with job opportunity
+                # Generate comment with job opportunity (asks for private message)
                 comment = self.comment_chain_with_job.run(
                     post_content=post_content,
                     job_title=matched_job.title,
                     job_location=matched_job.location,
-                    job_requirements=", ".join(matched_job.requirements[:3]),
-                    job_url=matched_job.url
+                    job_requirements=", ".join(matched_job.requirements[:3])
                 )
             else:
                 # Generate general supportive comment

@@ -38,7 +38,7 @@ def setup_petah_tikva_jobs():
 🔝 הזדמנות לפיתוח קריירה בתחום הביטוח
 📅 עד יומיים עבודה מהבית
 ⭐️ נופש חברה ועוד מגוון תנאים מעולים""",
-            "url": "https://www.correct-tech.co.il/sites/4599caa68a/8fbce806ba",
+            "url": "private_message",  # Will ask candidates to send PM
             "salary": "₪15,000 ממוצע (בסיס + בונוסים)",
             "job_type": "Full-time",
             "experience_level": "Entry"
