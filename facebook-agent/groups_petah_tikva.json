@@ -1,0 +1,32 @@
+[
+  {
+    "group_id": "REPLACE_WITH_REAL_GROUP_ID",
+    "name": "דרושים פתח תקווה",
+    "city": "Petah Tikva",
+    "description": "Job opportunities in Petah Tikva - Replace with real group ID after joining"
+  },
+  {
+    "group_id": "REPLACE_WITH_REAL_GROUP_ID",
+    "name": "משרות מרכז - פתח תקווה ואזור",
+    "city": "Petah Tikva",
+    "description": "Jobs in center area - Petah Tikva and surroundings"
+  },
+  {
+    "group_id": "REPLACE_WITH_REAL_GROUP_ID",
+    "name": "דרושים ישראל - אזור המרכז",
+    "city": "Petah Tikva",
+    "description": "Jobs in Israel - Central region including Petah Tikva"
+  },
+  {
+    "group_id": "REPLACE_WITH_REAL_GROUP_ID",
+    "name": "חיפוש עבודה ישראל",
+    "city": "Petah Tikva",
+    "description": "Job search Israel - includes Petah Tikva area"
+  },
+  {
+    "group_id": "REPLACE_WITH_REAL_GROUP_ID",
+    "name": "דרושים במרכז הארץ",
+    "city": "Petah Tikva",
+    "description": "Jobs in center of Israel"
+  }
+]
