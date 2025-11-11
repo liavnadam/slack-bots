@@ -1,0 +1,38 @@
+# Environment variables (contains sensitive credentials)
+.env
+
+# Saved Facebook session (contains cookies/tokens)
+fb_session.json
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Playwright
+.playwright/
+playwright-report/
+test-results/

@@ -1,10 +1,65 @@
-# Facebook Job Search Agent V2
+# Facebook Job Search Agent
 
-An intelligent agent that automatically finds job-seeking posts on Facebook and comments with helpful advice + relevant job opportunities from your company. Built with LangChain, GPT-3.5, and Facebook Graph API.
+An intelligent agent that automatically finds job-seeking posts on Facebook and comments with helpful advice + relevant job opportunities from your company.
+
+## 🎯 Two Versions Available
+
+### ⭐ **Playwright Version** (RECOMMENDED)
+- ✅ **Works when Graph API is blocked**
+- ✅ **Real browser automation** - looks like a real user
+- ✅ **Full Hebrew support**
+- ✅ **Session persistence** - login once, use many times
+- 📖 **Quick Start:** See [QUICKSTART_PLAYWRIGHT_HE.md](QUICKSTART_PLAYWRIGHT_HE.md) (Hebrew)
+- 🚀 **File:** `facebook_playwright_agent.py`
+
+### Graph API Version (Legacy)
+- ⚠️ May be blocked by Facebook
+- Requires Facebook Developer account and API token
+- 🚀 **File:** `facebook_job_agent_v2.py`
+
+Built with LangChain, GPT-3.5, and Playwright/Facebook Graph API.
+
+## 🚀 Quick Start (Playwright Version)
+
+**For Graph API blocked? Use Playwright!**
+
+### 1. Install Dependencies
+```bash
+cd facebook-agent
+pip install -r requirements.txt
+playwright install chromium
+```
+
+### 2. Configure Credentials
+```bash
+cp .env.example .env
+# Edit .env with your Facebook email/password and OpenAI key
+```
+
+### 3. Test Setup
+```bash
+python test_playwright.py
+```
+
+### 4. Run Agent (Dry Run)
+```bash
+python facebook_playwright_agent.py
+```
+
+📖 **Full Guide:** [QUICKSTART_PLAYWRIGHT_HE.md](QUICKSTART_PLAYWRIGHT_HE.md) (Hebrew)
+
+---
 
 ## 🚀 Key Features
 
-### V2 Enhancements (NEW!)
+### Playwright Version Features (NEW!)
+✨ **Browser Automation** - Real Chrome browser, looks human
+🔐 **Smart Login** - Saves session, no re-login needed
+🛡️ **Anti-Detection** - Random delays, human-like behavior
+📊 **Visual Debugging** - See what the bot sees
+🌐 **Works Everywhere** - No API restrictions
+
+### V2 Enhancements
 
 ✨ **Job Opportunity Matching** - Automatically matches job seekers with relevant positions from your company
 🎯 **City-Based Targeting** - Target specific Facebook groups in cities where you have job openings
@@ -396,31 +451,40 @@ self.llm = ChatOpenAI(
 
 ```
 facebook-agent/
-├── facebook_job_agent_v2.py        # ⭐ Enhanced version (recommended)
+├── facebook_playwright_agent.py    # ⭐ Playwright version (RECOMMENDED!)
+├── facebook_job_agent_v2.py        # Graph API enhanced version
+├── facebook_job_agent.py           # Original Graph API version
 ├── job_opportunities.py            # Job loading and matching
-├── job_entry_helper.py             # 🆕 Interactive job entry tool
-├── correct_tech_scraper.py         # 🆕 Job import utilities
+├── job_entry_helper.py             # Interactive job entry tool
+├── correct_tech_scraper.py         # Job import utilities
+├── test_playwright.py              # 🆕 Test Playwright setup
 ├── jobs.json                       # Your job openings
 ├── groups.json                     # Target Facebook groups
-├── facebook_job_agent.py           # Original simple version
+├── fb_session.json                 # 🆕 Saved browser session (auto-generated)
 ├── requirements.txt                # Dependencies
 ├── .env.example                    # Environment template
 ├── README.md                       # This file
-└── QUICKSTART_CORRECT_TECH.md      # 🆕 Quick start for Correct Tech
+├── QUICKSTART_PLAYWRIGHT_HE.md     # 🆕 Playwright guide (Hebrew)
+└── QUICKSTART_CORRECT_TECH.md      # Quick start for Correct Tech
 ```
 
 ## 🆚 Version Comparison
 
-| Feature | V1 (Basic) | V2 (Enhanced) |
-|---------|------------|---------------|
-| Basic comments | ✓ | ✓ |
-| Job matching | ✗ | ✓ |
-| City targeting | ✗ | ✓ |
-| Advanced rate limiting | ✗ | ✓ |
-| Multiple job sources | ✗ | ✓ |
-| Production ready | Partial | ✓ |
+| Feature | V1 (Graph API) | V2 (Graph API Enhanced) | Playwright |
+|---------|----------------|------------------------|------------|
+| Basic comments | ✓ | ✓ | ✓ |
+| Job matching | ✗ | ✓ | ✓ |
+| City targeting | ✗ | ✓ | ✓ |
+| Advanced rate limiting | ✗ | ✓ | ✓ |
+| Multiple job sources | ✗ | ✓ | ✓ |
+| Works when API blocked | ✗ | ✗ | ✅ |
+| No API token needed | ✗ | ✗ | ✅ |
+| Session persistence | ✗ | ✗ | ✅ |
+| Visual debugging | ✗ | ✗ | ✅ |
+| Hebrew support | ✓ | ✓ | ✅ |
+| Production ready | Partial | ✓ | ✅ |
 
-**Recommendation:** Use V2 (`facebook_job_agent_v2.py`) for production use.
+**Recommendation:** Use **Playwright** (`facebook_playwright_agent.py`) - most reliable and feature-rich!
 
 ## 🐛 Troubleshooting
 
